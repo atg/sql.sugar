@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itemizer>
+
+	<recipe name="function.sql">
+		<class>ESBaseItem</class>
+		<start-selector>function.sql:has-child(name:capture(name)):capture(itemizer-firstused) + curly.brace.open.sql</start-selector>
+		<end-selector>curly.brace.close.sql</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+
+	<recipe name="block.sql.hidden">
+		<class>ESCodeBlockItem</class>
+		<start-selector>curly.brace.open.sql</start-selector>
+		<end-selector>curly.brace.close.sql</end-selector>
+		<subrecipes>
+			<include-root-recipes/>
+		</subrecipes>
+	</recipe>
+	
+</itemizer>

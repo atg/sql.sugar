@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings>
+
+	<language id="espresso.default.SQL">
+		
+		<root-zone>sourcecode.sql</root-zone>
+		<name>SQL</name>
+		<detectors>
+			<extension>sql</extension>
+		</detectors>
+		
+	</language>
+	
+</settings>

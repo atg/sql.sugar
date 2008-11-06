@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+CodeSense Providers map contexts in a document to possible completions. The actual completions are defined in the various CodeSense libraries, categorized using their key. A CodeSense Provider tells Espresso what CodeSense libraries are active in the current context. One of these XML files can contain many <provider> elements.
+
+-->
+<codesense>
+	
+	<provider>
+		<selector>sql</selector>
+		<completions>net.fileability.sql.verbs</completions>
+		<complete-match capture="2">(\s*)([a-zA-Z0-9-]+)</complete-match>
+	</provider>
+
+	<provider>
+		<selector>sql</selector>
+		<completions>net.fileability.sql.types</completions>
+		<complete-match capture="2">(\s*)([a-zA-Z0-9\-_]+)</complete-match>
+	</provider>
+
+	<provider>
+		<selector>sql</selector>
+		<completions>net.fileability.sql.functions</completions>
+		<complete-match capture="2">(\s*)([a-zA-Z0-9\-_]+)</complete-match>
+	</provider>
+	
+</codesense>

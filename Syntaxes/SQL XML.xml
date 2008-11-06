@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+
+<!-- ***********************
+	
+	SQL Sugar. Made by Alex Gordon.
+	alextgordon@gmail.com
+	www.fileability.net
+
+	Public Domain:
+I, the copyright holder of this work, hereby release it into the public domain. This applies worldwide.
+In case this is not legally possible,
+I grant any entity the right to use this work for any purpose, without any conditions, unless such conditions are required by law.
+
+     *********************** -->
+
+
+<syntax name="sourcecode.sql">
+	<zones>
+		
+		
+				
+<!-- **************** -->
+<!-- *** Keywords *** -->
+<!-- **************** -->
+
+		<!-- Statements, Verbs and Keywords -->
+		<zone name="keyword.control.sql">
+			<expression>\b(?i:(SELECT\s+DISTINCT|SELECT|UPDATE|VALUES|INSERT\s+INTO|IN|FROM|WHERE|AND|OR|NOT\s+NULL|NOT|LIKE|GROUP\s+BY|UPDATE|SET|DELETE\s+FROM|ORDER\s+BY|LEFT\s+JOIN|RIGHT\s+JOIN|FULL\s+JOIN|CREATE|ALTER|DROP|TABLE|DATABASE|VIEW|TRIGGER|INDEX|USER|USE|ENGINE|CHARSET|AGGREGATE|CONVERSION|DOMAIN|FUNCTION|GROUP|LANGUAGE|OPERATOR|RULE|SCHEMA|SEQUENCE|TABLESPACE|TYPE|CASCADE|RESTRICT|DESC|ASC|AS|IS|ON|REFERENCES|TEMP|TEMPORARY|MATCH|DEFERRABLE|INITIALLY|DEFERRED|IMMEDIATE|ANALYZE|ATTACH))\b</expression>
+		</zone>
+		
+		<!-- Types -->
+		<zone name="storage.type.sql">
+			<expression>\b(?i:(bigint|bigserial|bit|boolean|date|double\sprecision|int|integer|real|serial|smallint|sysdate|text|timestamp|tinytext|((varying|character|tinyint|var\schar|float|interval|char|number|varchar|numeric)\d*)))\b</expression>
+		</zone>
+		
+		<!-- Field Modifiers -->
+		<zone name="keyword.control.modifiers.sql">
+			<expression>\b(?i:(primary\s+key|auto(_|\s+)increment|default|not\s+null|unique|foreign\s+key|collate|check|constraint))\b</expression>
+		</zone>
+		
+		<!-- Operators -->
+		<zone name="keyword.operator.sql">
+			<expression>(!|\$|%|&amp;|\+|,|~|==|=|!=|!==|&lt;=|&gt;=|&lt;&gt;|&lt;|&gt;|!|&amp;&amp;|\|\||\(|\))</expression>
+		</zone>
+		
+		
+		
+<!-- ***************** -->
+<!-- *** Constants *** -->
+<!-- ***************** -->
+
+		<!-- Null -->
+		<zone name="constant.language.null.sql">
+			<expression>\b(?i:(NULL))\b</expression>
+		</zone>
+		
+		<!-- Numbers -->
+		<zone name="constant.numeric.sql">
+			<expression>\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+|((e|E)[0-9]+))?))\b</expression>
+		</zone>
+		
+		<!-- Storage Engines -->
+		<zone name="constant.language.storageengine.sql">
+			<expression>\b(?i:(MyISAM|InnoDB|BDB|Merge|Heap|CSV|Blackhole|Example))\b</expression>
+		</zone>
+		
+		<!-- Character Encodings -->
+		<zone name="constant.language.charencoding.sql">
+			<expression>\b(?i:(ASCII(_[a-z0-9_]+)?|latin1(_[a-z0-9_]+)?|utf8(_[a-z0-9_]+)?|ucs2(_[a-z0-9_]+)?))\b</expression>
+		</zone>
+		
+		<!-- Core Functions -->
+		<zone name="support.function.builtin.sql">
+			<expression>\b(?i:(CURRENT_(DATE|TIME(STAMP)?|USER)|(SESSION|SYSTEM)_USER)|AVG|COUNT|MIN|MAX|SUM|CONCATENATE|CONVERT|LOWER|SUBSTRING|TRANSLATE|TRIM|UPPER|ABS|COALESCE)\b</expression>
+		</zone>
+		
+		<!-- Single Quoted Literals -->
+		<zone name="string.quoted.single.sql">
+			<starts-with>
+				<expression>(X|N|B)?&apos;</expression>
+				<capture number="0" name="punctuation.definition.string.begin.sql"/>
+			</starts-with>
+			<ends-with>
+				<expression>&apos;</expression>
+				<capture number="0" name="punctuation.definition.string.end.sql"/>
+			</ends-with>
+			<subzones>
+				<zone name="constant.character.escape.sql">
+					<expression>\\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)</expression>
+				</zone>
+			</subzones>
+		</zone>
+		
+		<!-- Double Quoted Literals -->
+		<zone name="string.quoted.single.sql">
+			<starts-with>
+				<expression>(X|N|B)?&quot;</expression>
+				<capture number="0" name="punctuation.definition.string.begin.sql"/>
+			</starts-with>
+			<ends-with>
+				<expression>&quot;</expression>
+				<capture number="0" name="punctuation.definition.string.end.sql"/>
+			</ends-with>
+			<subzones>
+				<zone name="constant.character.escape.sql">
+					<expression>\\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)</expression>
+				</zone>
+			</subzones>
+		</zone>
+		
+		<!-- Backtick Quoted Identifiers -->
+		<zone name="meta.function.sql">
+			<expression>(`[^`]*`)</expression>
+			<capture number="1" name="entity.name.function.sql"/>
+		</zone>
+		
+		<!-- Star Operator -->
+		<zone name="meta.function.sql">
+			<expression>\*</expression>
+			<capture number="0" name="entity.name.function.sql"/>
+		</zone>
+
+
+
+<!-- **************** -->
+<!-- *** Comments *** -->
+<!-- **************** -->
+
+		<!-- /* C-style comments */ -->
+		<zone name="comment.block.sql">
+			<starts-with>
+				<expression>/\*</expression>
+				<capture number="0" name="punctuation.definition.begin.sql"/>
+			</starts-with>
+			<ends-with>
+				<expression>\*/</expression>
+				<capture number="0" name="punctuation.definition.end.sql"/>
+			</ends-with>
+		</zone>
+
+		<!-- Double Dash comments -->
+		<zone name="comment.line.doubledash.sql">
+			<expression>(\-\-).*$\n?</expression>
+			<capture number="1" name="punctuation.definition.begin.sql"/>
+		</zone>
+		
+		<!-- #Perl Style Comments --> 
+		<zone name="comment.line.hash.js">
+			<expression>(#).*$\n?</expression>
+			<capture number="1" name="punctuation.definition.begin.sql"/>
+		</zone>
+
+		<!-- //C++ style comments (do any SQL distros use these? I'm not sure)-->
+		<zone name="comment.line.doubleslash.js">
+			<expression>(//).*$\n?</expression>
+			<capture number="1" name="punctuation.definition.begin.sql"/>
+		</zone>
+
+	</zones>
+</syntax>

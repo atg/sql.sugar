@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+
+
+<!-- ***********************
+	
+	SQL Sugar. Made by Alex Gordon.
+	alextgordon@gmail.com
+	www.fileability.net
+
+	Public Domain:
+I, the copyright holder of this work, hereby release it into the public domain. This applies worldwide.
+In case this is not legally possible,
+I grant any entity the right to use this work for any purpose, without any conditions, unless such conditions are required by law.
+
+     *********************** -->
+
+
+
+<plist version="1.0">
+<dict>
+	<key>comment</key>
+	<string>SQL Syntax</string>
+	<key>fileTypes</key>
+	<array>
+		<string>sql</string>
+	</array>
+	<key>keyEquivalent</key>
+	<string>^~S</string>
+	<key>name</key>
+	<string>SQL</string>
+	<key>patterns</key>
+	<array>
+
+
+
+<!-- **************** -->
+<!-- *** Keywords *** -->
+<!-- **************** -->
+
+		<!-- Statements, Verbs and Keywords -->
+		<dict>
+			<key>match</key>
+	<string>\b(?i:(SELECT\s+DISTINCT|SELECT|UPDATE|VALUES|INSERT\s+INTO|IN|FROM|WHERE|AND|OR|NOT|LIKE|GROUP\s+BY|UPDATE|SET|DELETE\s+FROM|ORDER\s+BY|LEFT\s+JOIN|RIGHT\s+JOIN|FULL\s+JOIN|CREATE|ALTER|DROP|TABLE|DATABASE|VIEW|TRIGGER|INDEX|USER|USE|ENGINE|CHARSET|AGGREGATE|CONVERSION|DOMAIN|FUNCTION|GROUP|LANGUAGE|OPERATOR|RULE|SCHEMA|SEQUENCE|TABLESPACE|TYPE|CASCADE|RESTRICT|DESC|ASC|AS|IS|ON|REFERENCES|TEMP|TEMPORARY|MATCH|DEFERRABLE|INITIALLY|DEFERRED|IMMEDIATE|ANALYZE|ATTACH))\b</string>
+			<key>name</key>
+			<string>keyword.control.sql</string>
+		</dict>
+		
+		<!-- Types -->
+		<dict>
+			<key>match</key>
+	<string>\b(?i:(bigint|bigserial|bit|boolean|date|double\sprecision|int|integer|real|serial|smallint|sysdate|text|timestamp|tinytext|((varying|character|tinyint|var\schar|float|interval|char|number|varchar|numeric)\d*)))\b</string>
+			<key>name</key>
+			<string>storage.type.sql</string>
+		</dict>
+		
+		<!-- Field Modifiers -->
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(primary\s+key|auto(_|\s+)increment|default|not\s+null|unique|foreign\s+key|collate|check|constraint))\b</string>
+			<key>name</key>
+			<string>keyword.control.modifiers.sql</string>
+		</dict>
+		
+		<!-- Operators -->
+		<dict>
+			<key>match</key>
+			<string>(!|\$|%|&amp;|\+|,|~|==|=|!=|!==|&lt;=|&gt;=|&lt;&gt;|&lt;|&gt;|!|&amp;&amp;|\|\||\(|\))</string>
+			<key>name</key>
+			<string>keyword.operator.sql</string>
+		</dict>
+		
+	
+	
+<!-- ***************** -->
+<!-- *** Constants *** -->
+<!-- ***************** -->
+
+		<!-- Null -->
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(NULL))\b</string>
+			<key>name</key>
+			<string>constant.language.null.sql</string>
+		</dict>
+		
+		<!-- Numbers -->
+		<dict>
+			<key>match</key>
+			<string>\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+|((e|E)[0-9]+))?))\b</string>
+			<key>name</key>
+			<string>constant.numeric.sql</string>
+		</dict>
+		
+		<!-- Storage Engines -->
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(MyISAM|InnoDB|BDB|Merge|Heap|CSV|Blackhole|Example))\b</string>
+			<key>name</key>
+			<string>constant.language.storageengine.sql</string>
+		</dict>
+		
+		<!-- Character Encodings -->
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(ASCII(_[a-z0-9_]+)?|latin1(_[a-z0-9_]+)?|utf8(_[a-z0-9_]+)?|ucs2(_[a-z0-9_]+)?))\b</string>
+			<key>name</key>
+			<string>constant.language.charencoding.sql</string>
+		</dict>
+		
+		<!-- Core Functions -->
+		<dict>
+			<key>match</key>
+			<string>\b(?i:(CURRENT_(DATE|TIME(STAMP)?|USER)|(SESSION|SYSTEM)_USER)|AVG|COUNT|MIN|MAX|SUM|CONCATENATE|CONVERT|LOWER|SUBSTRING|TRANSLATE|TRIM|UPPER|ABS|COALESCE)\b</string>
+			<key>comment</key>
+			<string>Some misc constants</string>
+			<key>name</key>
+			<string>support.function.builtin.sql</string>
+		</dict>
+		
+		<!-- Single Quoted Literals -->
+		<dict>
+			<key>begin</key>
+			<string>(X|N|B)?&apos;</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.sql</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>&apos;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.sql</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.single.sql</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)</string>
+					<key>name</key>
+					<string>constant.character.escape.sql</string>
+				</dict>
+			</array>
+		</dict>
+		
+		<!-- Double Quoted Literals -->
+		<dict>
+			<key>begin</key>
+			<string>(X|N|B)?&quot;</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.sql</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>&quot;</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.sql</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.double.sql</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)</string>
+					<key>name</key>
+					<string>constant.character.escape.sql</string>
+				</dict>
+			</array>
+		</dict>
+		
+		<!-- Backtick Quoted Identifiers -->
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.sql</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Match identifiers in backticks</string>
+			<key>match</key>
+			<string>(`[^`]*`)</string>
+			<key>name</key>
+			<string>meta.function.sql</string>
+		</dict>
+		
+		<!-- Star Operator -->
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.sql</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Match the star operator</string>
+			<key>match</key>
+			<string>\*</string>
+			<key>name</key>
+			<string>meta.function.sql</string>
+		</dict>
+		
+			
+		
+<!-- **************** -->
+<!-- *** Comments *** -->
+<!-- **************** -->
+
+		<!-- /* C-style comments */ -->
+		<dict>
+			<key>begin</key>
+			<string>/\*</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.sql</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\*/</string>
+			<key>name</key>
+			<string>comment.block.sql</string>
+		</dict>
+		
+		<!-- Double Dash comments -->
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.begin.sql</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(--).*$\n?</string>
+			<key>name</key>
+			<string>comment.line.double-dash.sql</string>
+		</dict>
+		
+		<!-- #Perl Style Comments --> 
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.begin.sql</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(#).*$\n?</string>
+			<key>name</key>
+			<string>comment.line.hash.sql</string>
+		</dict>
+		
+		<!-- //C++ style comments (do any SQL distros use these? I'm not sure)-->
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.begin.sql</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(//).*$\n?</string>
+			<key>name</key>
+			<string>comment.line.double-slash.sql</string>
+		</dict>
+		
+		
+		
+<!-- *********** -->
+<!-- *** End *** -->
+<!-- *********** -->
+	</array>
+	<key>scopeName</key>
+	<string>sourcecode.sql</string>
+	<key>uuid</key>
+	<string>42A41737-6B51-4FFC-AD9C-BFBFE800D866</string>
+</dict>
+</plist>

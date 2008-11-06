@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ***********************
+	
+	SQL Sugar. Made by Alex Gordon.
+	alextgordon@gmail.com
+	www.fileability.net
+
+	Public Domain:
+I, the copyright holder of this work, hereby release it into the public domain. This applies worldwide.
+In case this is not legally possible,
+I grant any entity the right to use this work for any purpose, without any conditions, unless such conditions are required by law.
+
+     *********************** -->
+
+<!-- The aim here is not to autocomplete everything. That would do more harm than good. Instead we want to hand pick some of the most used keywords. Who uses MEDIUMINT on a regular basis for example? -->
+
+<codesense version="1.0">
+	<behavior>
+		<append-dynamic>
+			<matched-suffix>.+ </matched-suffix>
+			<transform-into>#0 </transform-into>
+		</append-dynamic>
+
+		<confirm characters=" " />
+	</behavior>
+	
+	<set name="net.fileability.sql.verbs">
+		<completion string="SELECT " />
+		<completion string="SELECT DISTINCT " />
+		<completion string="SELECT * FROM " />
+		
+		<completion string="WHERE " />
+		
+		<completion string="INSERT " />
+		
+		<completion string="UPDATE " />
+		<completion string="VALUES " />
+		<completion string="SET " />
+		
+		<completion string="NOT NULL" />
+		<completion string="NULL" />
+
+
+		<completion string="CREATE " />
+		<completion string="CREATE TABLE " />
+		<completion string="CREATE USER " />
+		<completion string="CREATE DATABASE " />
+		<completion string="CREATE INDEX " />
+		<completion string="CREATE VIEW " />
+		<completion string="CREATE TRIGGER " />
+		
+		<completion string="DROP " />
+		<completion string="DROP TABLE " />
+		<completion string="DROP INDEX " />
+		<completion string="DROP VIEW " />
+		<completion string="DROP TRIGGER " />
+		<completion string="DROP USER " />
+		<completion string="DROP DATABASE " />
+		
+		<completion string="ALTER " />
+		<completion string="ALTER TABLE " />
+		<completion string="ALTER INDEX " />
+		<completion string="ALTER VIEW " />
+		<completion string="ALTER TRIGGER " />
+		<completion string="ALTER USER " />
+		<completion string="ALTER DATABASE " />
+		
+		<completion string="PRIMARY KEY " />
+		
+		<completion string="IF NOT EXISTS " />
+	</set>
+	
+	<set name="net.fileability.sql.types">
+		<completion string="INT" />
+		<completion string="INTEGER" />
+		<completion string="BIGINT" />
+		<completion string="TEXT " />
+		<completion string="VARCHAR" />
+		<completion string="BOOLEAN" />
+	</set>
+
+	<set name="net.fileability.sql.functions">
+		<completion string="CURRENT_DATE" />
+		<completion string="CURRENT_TIME" />
+		<completion string="CURRENT_TIMESTAMP" />
+		<completion string="CURRENT_USER " />
+		<completion string="AVG" />
+		<completion string="COUNT" />
+		<completion string="MIN" />
+		<completion string="MAX" />
+		<completion string="SUM" />
+		<completion string="CONCATENATE" />
+		<completion string="CONVERT" />
+		<completion string="LOWER" />
+		<completion string="SUBSTRING" />
+		<completion string="TRANSLATE" />
+		<completion string="TRIM" />
+		<completion string="UPPER" />
+	</set>
+</codesense>
