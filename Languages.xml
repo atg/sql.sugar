@@ -2,7 +2,7 @@
 
 <settings>
 
-	<language id="espresso.default.SQL">
+	<language id="net.fileability.SQL">
 		
 		<root-zone>sourcecode.sql</root-zone>
 		<name>SQL</name>
