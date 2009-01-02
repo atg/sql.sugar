@@ -11,5 +11,16 @@
 		</detectors>
 		
 	</language>
+
+	<meta>
+
+    <name>SQL</name>
+    <author>Alex Gordon</author>
+    <identifier>net.fileability.Sugar.SQL</identifier>
+    <download format="git">git://github.com/fileability/sql.sugar.git</download>
+    <url>http://github.com/fileability/sql.sugar</url>
+    <dependencies></dependencies>
+
+  </meta>
 	
 </settings>
