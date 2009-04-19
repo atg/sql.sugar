@@ -6,7 +6,7 @@ CodeSense Providers map contexts in a document to possible completions. The actu
 -->
 <codesense>
 	
-	<provider>
+	<!--<provider>
 		<selector>sql</selector>
 		<completions>net.fileability.sql.verbs</completions>
 		<complete-match capture="2">(\s*)([a-zA-Z0-9-]+)</complete-match>
@@ -23,5 +23,23 @@ CodeSense Providers map contexts in a document to possible completions. The actu
 		<completions>net.fileability.sql.functions</completions>
 		<complete-match capture="2">(\s*)([a-zA-Z0-9\-_]+)</complete-match>
 	</provider>
-	
+-->
+	<provider>
+		<selector>sql:not(comment, string.quoted, entity.name)</selector>
+		<completions>net.fileability.sql.verbs</completions>
+		<complete-match capture="0">[A-Za-z_][A-Za-z0-9_]*</complete-match>
+	</provider>
+
+	<provider>
+		<selector>sql:not(comment, string.quoted, entity.name)</selector>
+		<completions>net.fileability.sql.types</completions>
+		<complete-match capture="0">[A-Za-z_][A-Za-z0-9_]*</complete-match>
+	</provider>
+
+	<provider>
+		<selector>sql:not(comment, string.quoted, entity.name)</selector>
+		<completions>net.fileability.sql.functions</completions>
+		<complete-match capture="0">[A-Za-z_][A-Za-z0-9_]*</complete-match>
+	</provider>
+
 </codesense>

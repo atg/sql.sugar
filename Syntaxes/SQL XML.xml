@@ -32,7 +32,7 @@ I grant any entity the right to use this work for any purpose, without any condi
 		
 		<!-- Types -->
 		<zone name="storage.type.sql">
-			<expression>\b(?i:(bigint|bigserial|bit|boolean|date|double\sprecision|int|integer|real|serial|smallint|sysdate|text|timestamp|tinytext|((varying|character|tinyint|var\schar|float|interval|char|number|varchar|numeric)\d*)))\b</expression>
+			<expression>\b(?i:(bigint|bigserial|bit|boolean|date|double\sprecision|decimal|int|integer|real|serial|smallint|sysdate|text|timestamp|tinytext|((varying|character|tinyint|var\schar|float|interval|char|number|varchar|numeric)\d*)))\b</expression>
 		</zone>
 		
 		<!-- Field Modifiers -->
